@@ -1,6 +1,6 @@
 # Social Media Builder
 
-<img src="assets/logo.png" alt="Social Media Builder" width="200"/>
+<img src="assets/logo.png" alt="Social Media Builder" width="300"/>
 
 ## ¿Qué es?
 Este software ayuda como base en la arquitectura de objetos de una red social.
