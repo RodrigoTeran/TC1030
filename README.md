@@ -2,8 +2,14 @@
 
 <img src="assets/logo.png" alt="Social Media Builder" width="300"/>
 
+## Creador
+
+> Rodrigo Terán Hernández
+>> A01704108
+
 ## ¿Qué es?
-Este software ayuda como base en la arquitectura de objetos de una red social.
+Este software es una arquitectura de objetos de una red social. Con este software puedes crear tu propia red social desde cero.
+Ya tiene muchas implementaciones que se usan en las redes sociales. Este software sirve para que cualquiera cree una red social.
 
 Este sistema contiene estos objetos:
 * Personas
@@ -28,11 +34,6 @@ de redes sociales.
 Por lo tanto, es muy versátil. Puede usarse tanto en pequeños proyectos, como
 para proyectos enormes.
 
-
-## Creador
-
-> Rodrigo Terán Hernández
->> A01704108
 
 ### Clases de posts:
 * Post
