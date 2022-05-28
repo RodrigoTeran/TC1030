@@ -46,3 +46,8 @@ para proyectos enormes.
 * No se puede crear un grupo sin haber creado un usuario
 * No se puede crear un comentario sin haber creado un post
 * No se puede crear una opción de una encuesta sin haber creado una encuesta
+
+
+## Correr programa
+
+> g++ main.cpp includes/random.cpp -o main
