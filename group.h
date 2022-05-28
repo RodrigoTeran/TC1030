@@ -19,7 +19,7 @@ class Group {
         int participants;
         int posts;
         string name;
-        Post* arrayRelatedPost;
+        Post* arrayRelatedPosts;
     
 
     public:
@@ -44,7 +44,7 @@ class Group {
 
 // Constructors and destructors
 Group::~Group() {
-    delete [] this->arrayRelatedPost;
+    delete [] this->arrayRelatedPosts;
 };
 
 Group::Group() {
@@ -52,7 +52,7 @@ Group::Group() {
     this->name = "";
     this->participants = 0;
     this->posts = 0;
-    this->arrayRelatedPost = new Post[100];
+    this->arrayRelatedPosts = new Post[100];
 };
 
 Group::Group(string name) {
@@ -60,7 +60,7 @@ Group::Group(string name) {
     this->name = name;
     this->participants = 0;
     this->posts = 0;
-    this->arrayRelatedPost = new Post[100];
+    this->arrayRelatedPosts = new Post[100];
 };
 
 
@@ -78,7 +78,7 @@ string Group::getName() {
 };
 
 Post* Group::getArrayRelatedPosts() {
-    return this->arrayRelatedPost;
+    return this->arrayRelatedPosts;
 };
 
 // Setters
@@ -98,7 +98,7 @@ void Group::joinMember() {
 
 void Group::createRelatedPost(string text) {
     Post RelatedPost(text);
-    this->arrayRelatedPost[this->posts] = RelatedPost;
+    this->arrayRelatedPosts[this->posts] = RelatedPost;
     this->posts = this->posts + 1;
 };
 

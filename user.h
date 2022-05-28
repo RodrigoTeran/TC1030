@@ -60,7 +60,7 @@ class User {
 		void createComment(string, Post);
 		void joinGroup(Group);
 		void connectWithFriend(User);
-		void likeOrDislikePost(Post);
+		void likeOrDislikePost(Post, bool);
 		void joinEvent(Event);
 		void voteInPoll(Poll, string);
 
@@ -203,8 +203,10 @@ void User::connectWithFriend(User user) {
     this->friends = this->friends + 1;
 };
 
-void User::likeOrDislikePost(Post post) {
-	post.addLike();
+void User::likeOrDislikePost(Post post, bool isLike) {
+	if (isLike) {
+		post.addLike();
+	};
 };
 
 void User::joinEvent(Event event) {
