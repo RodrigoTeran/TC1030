@@ -21,7 +21,7 @@ class Event: public Post {
     public:
         Event();
         Event(string);
-        Event(string, string);
+        Event(string, string, string);
 
         // Getters
         string getDate();
@@ -40,19 +40,19 @@ class Event: public Post {
 // Constructors
 Event::Event(): Post() {
     this->place = "";
-    this->date = "27/05/2022";
+    this->date = "03/06/2022";
     this->participants = 0;
 };
 
 Event::Event(string text): Post(text) {
     this->place = "";
-    this->date = "27/05/2022";
+    this->date = "03/06/2022";
     this->participants = 0;
 };
 
-Event::Event(string text, string place): Post(text) {
+Event::Event(string text, string place, string date): Post(text) {
     this->place = place;
-    this->date = "27/05/2022";
+    this->date = date;
     this->participants = 0;
 };
 
@@ -84,8 +84,8 @@ void Event::addParticipant(){
 };
 
 void Event::announcePost(){
-    cout << "Evento el día " << this->date << " en " << this->place << 
-        ". ya están inscritos " << this->participants << " participantes." << endl;
+    cout << "Evento el dia " << this->date << " en " << this->place << 
+        ". ya estan inscritos " << this->participants << " participantes." << endl;
 };
 
 #endif

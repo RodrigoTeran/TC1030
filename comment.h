@@ -12,6 +12,8 @@
 
 using namespace std;
 
+const int MAX_REPLIES = 100;
+
 class Comment {
     private:
         string _id;
@@ -48,21 +50,18 @@ Comment::Comment() {
     this->_id = createID();
     this->text = "";
     this->numberReplies = 0;
-    this->arrayReplies = new Comment[100];
     this->commentReplied = NULL;
 };
 Comment::Comment(string text) {
     this->_id = createID();
     this->text = text;
     this->numberReplies = 0;
-    this->arrayReplies = new Comment[100];
     this->commentReplied = NULL;
 };
 Comment::Comment(string text, Comment commentReplied) {
     this->_id = createID();
     this->text = text;
     this->numberReplies = 0;
-    this->arrayReplies = new Comment[100];
     *this->commentReplied = commentReplied;
 };
 
@@ -91,6 +90,10 @@ void Comment::setText(string text) {
 
 // Extra Methods
 void Comment::addReply(Comment comment) {
+    if (this->numberReplies == 0) {
+        this->arrayReplies = new Comment[MAX_REPLIES];
+    };
+
     this->arrayReplies[numberReplies] = comment;
     this->numberReplies = this->numberReplies + 1;
 };

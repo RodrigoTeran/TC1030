@@ -18,7 +18,7 @@ class Post {
         string _id;
         int likes;
         int comments;
-        Comment *arrayComments;
+        Comment* arrayComments;
         string text;
         string fileInCDN;
 

@@ -30,6 +30,7 @@ class Group {
         // Getters
         string getId();
         int getNumberParticipants();
+        int getNumberPosts();
         string getName();
         Post* getArrayRelatedPosts();
 
@@ -52,7 +53,7 @@ Group::Group() {
     this->name = "";
     this->participants = 0;
     this->posts = 0;
-    this->arrayRelatedPosts = new Post[100];
+    this->arrayRelatedPosts = new Post[10];
 };
 
 Group::Group(string name) {
@@ -60,7 +61,7 @@ Group::Group(string name) {
     this->name = name;
     this->participants = 0;
     this->posts = 0;
-    this->arrayRelatedPosts = new Post[100];
+    this->arrayRelatedPosts = new Post[10];
 };
 
 
@@ -71,6 +72,10 @@ string Group::getId() {
 
 int Group::getNumberParticipants() {
     return this->participants;
+};
+
+int Group::getNumberPosts() {
+    return this->posts;
 };
 
 string Group::getName() {

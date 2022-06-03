@@ -83,9 +83,12 @@ void Poll::addVote(string option) {
     bool optionFounded = false;
     for (int i = 0; i < this->numberOptions; i++) {
         PollOption curr = options[i];
+
         if (curr.getOption() == option) {
             curr.vote();
             optionFounded = true;
+
+            options[i] = curr;
         }
     };
 
@@ -96,10 +99,10 @@ void Poll::addVote(string option) {
 
 void Poll::announcePost(){
     cout << "Encuesta: " << this->question << endl;
-    cout << "Opcones: " << endl;
+    cout << "Opciones: " << endl;
     for (int i = 0; i < this->numberOptions; i++) {
         PollOption curr = options[i];
-        cout << "- " << curr.getOption() << endl;
+        cout << "- " << curr.getOption() << ": " << curr.getNumberVotes() << endl;
     };
 };
 
