@@ -18,7 +18,6 @@
 #include "poll.h"
 #include <time.h>
 #include <stdlib.h>
-// #include "conio.h"
 
 using namespace std;
 
@@ -30,10 +29,10 @@ int main() {
     User ErnestoFlores("Ernesto Flores", "54321", "ernestof@fb.com");
 
     // Events
-    Event Internship("Internship with Facebook", "San Fransisco", "13/06/2022");
+    Post* Internship = new Event("Internship with Facebook", "San Fransisco", "13/06/2022");
 
     // Today's Event
-    Internship.announcePost();
+    Internship->announcePost();
 
     // Space
     cout << endl;
@@ -75,18 +74,20 @@ int main() {
         "small",
         "medium",
         "large"};
-    Poll TShirtSizes("T-Shirt Sizes Poll", "What is your T-Shirt size?", options, 3);
-    Rodrigo.voteInPoll(&TShirtSizes, "small");
+    
+    Post* TShirtSizes = new Poll("T-Shirt Sizes Poll", "What is your T-Shirt size?", options, 3);
+
+    Rodrigo.voteInPoll(static_cast<Poll*>(TShirtSizes), "small");
     
     // Today's Event
-    Internship.addParticipant();
-    Internship.announcePost();
+    static_cast<Event*>(Internship)->addParticipant();
+    Internship->announcePost();
 
     // Space
     cout << endl;
 
     // Announce poll answers
-    TShirtSizes.announcePost();
+    TShirtSizes->announcePost();
 
     return 0;
 };

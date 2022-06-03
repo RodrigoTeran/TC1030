@@ -50,4 +50,4 @@ para proyectos enormes.
 
 ## Correr programa
 
-> g++ main.cpp includes/random.cpp -o main
+> g++ main.cpp includes/random.cpp -o main && main
