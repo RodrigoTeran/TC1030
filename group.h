@@ -22,8 +22,8 @@ class Group {
         int polls;
         int events;
         string name;
-        Poll arrayRelatedPoll[10];
-        Event arrayRelatedEvent[10];
+        Poll arrayRelatedPolls[10];
+        Event arrayRelatedEvents[10];
 
     public:
         Group();
@@ -48,8 +48,8 @@ class Group {
 
 // Constructors and destructors
 Group::~Group() {
-    delete [] this->arrayRelatedPoll;
-    delete [] this->arrayRelatedEvent;
+    delete [] this->arrayRelatedPolls;
+    delete [] this->arrayRelatedEvents;
 };
 
 Group::Group() {
@@ -91,10 +91,10 @@ void Group::setName(string name) {
 void Group::printArrayRelatedPosts() {
     cout << this->name << "'s posts:" << endl;
     for (int i = 0; i < events; i++) {        
-        cout << "- " << this->arrayRelatedEvent[i].getText() << endl;
+        cout << "- " << this->arrayRelatedEvents[i].getText() << endl;
     };
     for (int i = 0; i < polls; i++) {        
-        cout << "- " << arrayRelatedPoll[i].getText() << endl;
+        cout << "- " << arrayRelatedPolls[i].getText() << endl;
     };
 };
 
@@ -108,13 +108,13 @@ void Group::joinMember() {
 
 void Group::createRelatedPost(string title, string question, string options[], int size) {
     Poll RelatedPost(title, question, options, size);
-    this->arrayRelatedPoll[this->polls] = RelatedPost;
+    this->arrayRelatedPolls[this->polls] = RelatedPost;
     this->polls = this->polls + 1;
 };
 
 void Group::createRelatedPost(string title, string where, string when) {
     Event RelatedPost(title, where, when);
-    this->arrayRelatedEvent[this->events] = RelatedPost;
+    this->arrayRelatedEvents[this->events] = RelatedPost;
     this->events = this->events + 1;
 };
 
