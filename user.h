@@ -28,7 +28,7 @@ class User {
 		int posts;
 		int groups;
 		User* arrayFriends;
-		Post** arrayPosts;
+		Post* arrayPosts[10];
 		Group* arrayGroups;
 
 	public:
@@ -61,7 +61,7 @@ class User {
 		void createGroupPost(string, string, string, Group*);
 		void createGroupPost(string, string, string[], int, Group*);
 		void createComment(string, Post*);
-		void joinGroup(Group);
+		void joinGroup(Group*);
 		void connectWithFriend(User);
 		void likeOrDislikePost(Post*, bool);
 		void joinEvent(Event);
@@ -84,7 +84,6 @@ User::User() {
 	this->friends = 0;
 	this->posts = 0;
 	this->groups = 0;
-	this->arrayPosts = new Post*[10];
 	this->arrayGroups = new Group[10];
 };
 User::User(string name) {
@@ -97,7 +96,6 @@ User::User(string name) {
 	this->friends = 0;
 	this->posts = 0;
 	this->groups = 0;
-	this->arrayPosts = new Post*[10];
 	this->arrayGroups = new Group[10];
 };
 User::User(string name, string password) {
@@ -110,7 +108,6 @@ User::User(string name, string password) {
 	this->friends = 0;
 	this->posts = 0;
 	this->groups = 0;
-	this->arrayPosts = new Post*[10];
     this->arrayGroups = new Group[10];
 };
 User::User(string name, string password, string email) {
@@ -123,7 +120,6 @@ User::User(string name, string password, string email) {
 	this->friends = 0;
 	this->posts = 0;
 	this->groups = 0;
-	this->arrayPosts = new Post*[10];
     this->arrayGroups = new Group[10];
 };
 
@@ -215,8 +211,8 @@ void User::createComment(string text, Post* post) {
 	post->createComment(text);
 };
 
-void User::joinGroup(Group group) {
-	group.joinMember();
+void User::joinGroup(Group *group) {
+	group->joinMember();
 };
 
 void User::connectWithFriend(User user) {

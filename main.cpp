@@ -30,20 +30,16 @@ int main() {
 
     // Events
     Post* Internship = new Event("Internship with Facebook", "San Fransisco", "13/06/2022");
-
-    cout <<"1" << endl;
-
+    
     // Today's Event
     Internship->announcePost();
-
-    cout <<"2" << endl;
-
+    
     // Space
     cout << endl;
 
     // Groups
     Group FacebookInterns("Facebook Interns 2022");
-    Rodrigo.joinGroup(FacebookInterns);
+    Rodrigo.joinGroup(&FacebookInterns);
 
     // Group posts
     ErnestoFlores.createGroupPost("13 June welcome package!", "Menlo Park", "11/06/2022", &FacebookInterns);
@@ -51,14 +47,9 @@ int main() {
         "yes",
         "no"};
     Rodrigo.createGroupPost("First photo at Meta!", "Do you like Meta?", optionsRodrigosPoll, 2, &FacebookInterns);
-
-    cout << FacebookInterns.getName() << "'s posts:" << endl;
         
-    Post** arrayPostsFacebook = FacebookInterns.getArrayRelatedPosts();
-    int numberPostsFacebook = FacebookInterns.getNumberPosts();
-    for (int i = 0; i < numberPostsFacebook; i++) {
-        cout << "- " << arrayPostsFacebook[i]->getText() << endl;
-    };
+    // Print posts
+    FacebookInterns.printArrayRelatedPosts();
 
     // Space
     cout << endl;

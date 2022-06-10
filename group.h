@@ -19,9 +19,11 @@ class Group {
     private:
         string _id;
         int participants;
-        int posts;
+        int polls;
+        int events;
         string name;
-        Post** arrayRelatedPosts;
+        Poll arrayRelatedPoll[10];
+        Event arrayRelatedEvent[10];
 
     public:
         Group();
@@ -31,9 +33,7 @@ class Group {
         // Getters
         string getId();
         int getNumberParticipants();
-        int getNumberPosts();
         string getName();
-        Post** getArrayRelatedPosts();
 
         // Setters
         void setName(string);
@@ -41,31 +41,32 @@ class Group {
         // Extra Methods
         void banMember();
         void joinMember();
+        void printArrayRelatedPosts();
         void createRelatedPost(string, string, string);
         void createRelatedPost(string, string, string[], int);
 };
 
 // Constructors and destructors
 Group::~Group() {
-    delete [] this->arrayRelatedPosts;
+    delete [] this->arrayRelatedPoll;
+    delete [] this->arrayRelatedEvent;
 };
 
 Group::Group() {
     this->_id = createID();
     this->name = "";
     this->participants = 0;
-    this->posts = 0;
-    this->arrayRelatedPosts = new Post*[10];
+    this->polls = 0;
+    this->events = 0;
 };
 
 Group::Group(string name) {
     this->_id = createID();
     this->name = name;
     this->participants = 0;
-    this->posts = 0;
-    this->arrayRelatedPosts = new Post*[10];
+    this->polls = 0;
+    this->events = 0;
 };
-
 
 // Getters
 string Group::getId() {
@@ -76,16 +77,8 @@ int Group::getNumberParticipants() {
     return this->participants;
 };
 
-int Group::getNumberPosts() {
-    return this->posts;
-};
-
 string Group::getName() {
     return this->name;
-};
-
-Post** Group::getArrayRelatedPosts() {
-    return this->arrayRelatedPosts;
 };
 
 // Setters
@@ -95,6 +88,16 @@ void Group::setName(string name) {
 
 
 // Extra Methods
+void Group::printArrayRelatedPosts() {
+    cout << this->name << "'s posts:" << endl;
+    for (int i = 0; i < events; i++) {        
+        cout << "- " << this->arrayRelatedEvent[i].getText() << endl;
+    };
+    for (int i = 0; i < polls; i++) {        
+        cout << "- " << arrayRelatedPoll[i].getText() << endl;
+    };
+};
+
 void Group::banMember() {
     this->participants = this->participants - 1;
 };
@@ -104,17 +107,15 @@ void Group::joinMember() {
 };
 
 void Group::createRelatedPost(string title, string question, string options[], int size) {
-    Post* RelatedPost = new Poll(title, question, options, 3);
-    
-    this->arrayRelatedPosts[this->posts] = RelatedPost;
-    this->posts = this->posts + 1;
+    Poll RelatedPost(title, question, options, size);
+    this->arrayRelatedPoll[this->polls] = RelatedPost;
+    this->polls = this->polls + 1;
 };
 
 void Group::createRelatedPost(string title, string where, string when) {
-    Post* RelatedPost = new Event(title, where, when);
-    
-    this->arrayRelatedPosts[this->posts] = RelatedPost;
-    this->posts = this->posts + 1;
+    Event RelatedPost(title, where, when);
+    this->arrayRelatedEvent[this->events] = RelatedPost;
+    this->events = this->events + 1;
 };
 
 #endif
