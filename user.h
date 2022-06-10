@@ -28,7 +28,7 @@ class User {
 		int posts;
 		int groups;
 		User* arrayFriends;
-		Post* arrayPosts;
+		Post** arrayPosts;
 		Group* arrayGroups;
 
 	public:
@@ -56,12 +56,14 @@ class User {
 		void setEmail(string);
 
 		// Extra Methods
-		void createOwnPost(string);
-		void createGroupPost(string, Group*);
-		void createComment(string, Post);
+		void createOwnPost(string, string, string);
+		void createOwnPost(string, string, string[], int);
+		void createGroupPost(string, string, string, Group*);
+		void createGroupPost(string, string, string[], int, Group*);
+		void createComment(string, Post*);
 		void joinGroup(Group);
 		void connectWithFriend(User);
-		void likeOrDislikePost(Post, bool);
+		void likeOrDislikePost(Post*, bool);
 		void joinEvent(Event);
 		void voteInPoll(Poll*, string);
 
@@ -82,7 +84,7 @@ User::User() {
 	this->friends = 0;
 	this->posts = 0;
 	this->groups = 0;
-	this->arrayPosts = new Post[10];
+	this->arrayPosts = new Post*[10];
 	this->arrayGroups = new Group[10];
 };
 User::User(string name) {
@@ -95,7 +97,7 @@ User::User(string name) {
 	this->friends = 0;
 	this->posts = 0;
 	this->groups = 0;
-	this->arrayPosts = new Post[10];
+	this->arrayPosts = new Post*[10];
 	this->arrayGroups = new Group[10];
 };
 User::User(string name, string password) {
@@ -108,7 +110,7 @@ User::User(string name, string password) {
 	this->friends = 0;
 	this->posts = 0;
 	this->groups = 0;
-    this->arrayPosts = new Post[10];
+	this->arrayPosts = new Post*[10];
     this->arrayGroups = new Group[10];
 };
 User::User(string name, string password, string email) {
@@ -121,7 +123,7 @@ User::User(string name, string password, string email) {
 	this->friends = 0;
 	this->posts = 0;
 	this->groups = 0;
-    this->arrayPosts = new Post[10];
+	this->arrayPosts = new Post*[10];
     this->arrayGroups = new Group[10];
 };
 
@@ -166,7 +168,7 @@ User* User::getArrayFriends() {
 };
 
 Post* User::getArrayPosts() {
-	return this->arrayPosts;	
+	return *this->arrayPosts;	
 };
 
 Group* User::getArrayGroups() {
@@ -187,18 +189,30 @@ void User::setEmail(string email) {
 };
 
 // Extra Methods
-void User::createOwnPost(string text) {
-	Post OwnPost(text);
+void User::createOwnPost(string title, string question, string options[], int size) {
+	Post* OwnPost = new Poll(title, question, options, 3);
+
     this->arrayPosts[this->posts] = OwnPost;
     this->posts = this->posts + 1;
 };
 
-void User::createGroupPost(string text, Group* group) {
-	group->createRelatedPost(text);
+void User::createOwnPost(string title, string where, string when) {
+	Post* OwnPost = new Event(title, where, when);
+
+    this->arrayPosts[this->posts] = OwnPost;
+    this->posts = this->posts + 1;
 };
 
-void User::createComment(string text, Post post) {
-	post.createComment(text);
+void User::createGroupPost(string title, string question, string options[], int size, Group* group) {
+	group->createRelatedPost(title, question, options, size);
+};
+
+void User::createGroupPost(string title, string where, string when, Group* group) {
+	group->createRelatedPost(title, where, when);
+};
+
+void User::createComment(string text, Post* post) {
+	post->createComment(text);
 };
 
 void User::joinGroup(Group group) {
@@ -216,9 +230,9 @@ void User::connectWithFriend(User user) {
 	};
 };
 
-void User::likeOrDislikePost(Post post, bool isLike) {
+void User::likeOrDislikePost(Post* post, bool isLike) {
 	if (isLike) {
-		post.addLike();
+		post->addLike();
 	};
 };
 

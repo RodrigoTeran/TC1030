@@ -10,6 +10,8 @@
 #include <iostream>
 #include "includes/random.h"
 #include "post.h"
+#include "event.h"
+#include "poll.h"
 
 using namespace std;
 
@@ -19,8 +21,7 @@ class Group {
         int participants;
         int posts;
         string name;
-        Post* arrayRelatedPosts;
-    
+        Post** arrayRelatedPosts;
 
     public:
         Group();
@@ -32,7 +33,7 @@ class Group {
         int getNumberParticipants();
         int getNumberPosts();
         string getName();
-        Post* getArrayRelatedPosts();
+        Post** getArrayRelatedPosts();
 
         // Setters
         void setName(string);
@@ -40,7 +41,8 @@ class Group {
         // Extra Methods
         void banMember();
         void joinMember();
-        void createRelatedPost(string);
+        void createRelatedPost(string, string, string);
+        void createRelatedPost(string, string, string[], int);
 };
 
 // Constructors and destructors
@@ -53,7 +55,7 @@ Group::Group() {
     this->name = "";
     this->participants = 0;
     this->posts = 0;
-    this->arrayRelatedPosts = new Post[10];
+    this->arrayRelatedPosts = new Post*[10];
 };
 
 Group::Group(string name) {
@@ -61,7 +63,7 @@ Group::Group(string name) {
     this->name = name;
     this->participants = 0;
     this->posts = 0;
-    this->arrayRelatedPosts = new Post[10];
+    this->arrayRelatedPosts = new Post*[10];
 };
 
 
@@ -82,7 +84,7 @@ string Group::getName() {
     return this->name;
 };
 
-Post* Group::getArrayRelatedPosts() {
+Post** Group::getArrayRelatedPosts() {
     return this->arrayRelatedPosts;
 };
 
@@ -101,8 +103,16 @@ void Group::joinMember() {
     this->participants = this->participants + 1;
 };
 
-void Group::createRelatedPost(string text) {
-    Post RelatedPost(text);
+void Group::createRelatedPost(string title, string question, string options[], int size) {
+    Post* RelatedPost = new Poll(title, question, options, 3);
+    
+    this->arrayRelatedPosts[this->posts] = RelatedPost;
+    this->posts = this->posts + 1;
+};
+
+void Group::createRelatedPost(string title, string where, string when) {
+    Post* RelatedPost = new Event(title, where, when);
+    
     this->arrayRelatedPosts[this->posts] = RelatedPost;
     this->posts = this->posts + 1;
 };

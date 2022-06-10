@@ -42,7 +42,7 @@ class Post {
         // Extra Methods
         void createComment(string);
         void addLike();
-        virtual void announcePost();
+        virtual void announcePost() = 0;
 };
 
 // Constructors and destructors
@@ -99,9 +99,6 @@ void Post::setLikes(int likes) {
     this->likes = likes;
 };
 
-void Post::announcePost(){
-    cout << this->text << endl;
-};
 
 void Post::setArrayComments(Comment arrayComments[]) {
     this->arrayComments = arrayComments;

@@ -31,8 +31,12 @@ int main() {
     // Events
     Post* Internship = new Event("Internship with Facebook", "San Fransisco", "13/06/2022");
 
+    cout <<"1" << endl;
+
     // Today's Event
     Internship->announcePost();
+
+    cout <<"2" << endl;
 
     // Space
     cout << endl;
@@ -42,22 +46,25 @@ int main() {
     Rodrigo.joinGroup(FacebookInterns);
 
     // Group posts
-    ErnestoFlores.createGroupPost("13 June welcome package!", &FacebookInterns);
-    Rodrigo.createGroupPost("So excited to start my internship at Meta!", &FacebookInterns);
+    ErnestoFlores.createGroupPost("13 June welcome package!", "Menlo Park", "11/06/2022", &FacebookInterns);
+    string optionsRodrigosPoll[2] = {
+        "yes",
+        "no"};
+    Rodrigo.createGroupPost("First photo at Meta!", "Do you like Meta?", optionsRodrigosPoll, 2, &FacebookInterns);
 
     cout << FacebookInterns.getName() << "'s posts:" << endl;
         
-    Post* arrayPostsFacebook = FacebookInterns.getArrayRelatedPosts();
+    Post** arrayPostsFacebook = FacebookInterns.getArrayRelatedPosts();
     int numberPostsFacebook = FacebookInterns.getNumberPosts();
     for (int i = 0; i < numberPostsFacebook; i++) {
-        cout << "- " << arrayPostsFacebook[i].getText() << endl;
+        cout << "- " << arrayPostsFacebook[i]->getText() << endl;
     };
 
     // Space
     cout << endl;
 
     // Own posts
-    ErnestoFlores.createOwnPost("Hi friends!, I'm going to be manager at Meta!");
+    ErnestoFlores.createOwnPost("Hi friends!, I'm going to be manager at Meta!", "Seattle", "Tomorrow!");
     
     cout << "Ernesto's posts:" << endl;
     
@@ -70,12 +77,12 @@ int main() {
     // Space
     cout << endl;
 
-    string options[3] = {
+    string optionsTShirt[3] = {
         "small",
         "medium",
         "large"};
     
-    Post* TShirtSizes = new Poll("T-Shirt Sizes Poll", "What is your T-Shirt size?", options, 3);
+    Post* TShirtSizes = new Poll("T-Shirt Sizes Poll", "What is your T-Shirt size?", optionsTShirt, 3);
 
     Rodrigo.voteInPoll(static_cast<Poll*>(TShirtSizes), "small");
     
